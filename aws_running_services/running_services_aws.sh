@@ -1,4 +1,5 @@
 #!/bin/bash
+export PATH=$PATH:/usr/local/bin
 #############################
 #Author: Jagan
 #Date: 25-10-2024
@@ -7,10 +8,10 @@
 
 set -x
 
-aws ec2 describe-instances --region us-east-1 | jq '.Reservations[].Instances[].InstanceId' >> result.txt
+aws ec2 describe-instances --region us-east-1 | jq '.Reservations[].Instances[].InstanceId' >> services
 
-aws s3 ls >> result.txt
+aws s3 ls >> services
 
-aws lambda list-functions >> result.txt
+aws lambda list-functions >> services
 
-aws iam list-users >> result.txt
+aws iam list-users >> services
